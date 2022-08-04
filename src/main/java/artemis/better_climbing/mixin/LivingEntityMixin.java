@@ -4,10 +4,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
-import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -23,25 +20,28 @@ public abstract class LivingEntityMixin extends Entity {
 		method = "handleOnClimbable(Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;",
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/util/Mth;clamp(DDD)D")
 	)
-	private double better_climbing_modifyHorizontalMovement(double val, double _trashLow, double _trashHigh) {
-		return val;
+	private double better_climbing_modifyHorizontalMovement(double speed, double vanillaSpeedMin, double vanillaSpeedMax) {
+		if (!this.onGround && this.isCrouching()) {
+			return Mth.clamp(speed, vanillaSpeedMin, vanillaSpeedMax);
+		} else {
+			return speed;
+		}
 	}
-
 
 	@Redirect(
 		method = "handleOnClimbable(Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;",
 		at = @At(value = "INVOKE", target = "Ljava/lang/Math;max(DD)D")
 	)
-	private double better_climbing_modifyY(double y, double _trashLow) {
-		double maxDownSpeed = Mth.clampedMap(this.getXRot(), 20, 90, -0.15, -0.4);
+	private double better_climbing_modifyVerticalMovement(double y, double vanillaDownSpeed) {
+		double maxDownSpeed = Mth.clampedMap(this.getXRot(), 20, 90, vanillaDownSpeed, -0.4);
 		return Math.max(y, maxDownSpeed);
 	}
 
 	@ModifyArg(
-					method = "handleRelativeFrictionAndCalculateMovement(Lnet/minecraft/world/phys/Vec3;F)Lnet/minecraft/world/phys/Vec3;",
-					at = @At(value = "INVOKE", target = "Lnet/minecraft/world/phys/Vec3;<init>(DDD)V"), index = 1
+		method = "handleRelativeFrictionAndCalculateMovement(Lnet/minecraft/world/phys/Vec3;F)Lnet/minecraft/world/phys/Vec3;",
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/world/phys/Vec3;<init>(DDD)V"), index = 1
 	)
 	private double better_climbing_allowJumpingInLadder(double climbYSpeed) {
-		return Math.max(this.getDeltaMovement().y, climbYSpeed);
+		return Math.max(this.getDeltaMovement().y, climbYSpeed + 0.05);
 	}
 }
