@@ -4,7 +4,7 @@
 	"version": "${version}",
 
 	"name": "Better Climbing",
-	"description": "Removes the slowdown from moving in climbable blocks, makes you climb slightly faster, lets you drop down climbable blocks faster by looking down, and lets you jump from the ground while standing in climbable blocks.",
+	"description": "Improves a lot of things relating to climbing, including making you climb faster",
 	"authors": [
 		"artemisSystem"
 	],
