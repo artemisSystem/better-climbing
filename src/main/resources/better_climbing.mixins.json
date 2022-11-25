@@ -9,5 +9,6 @@
 	],
 	"injectors": {
 		"defaultRequire": 1
-	}
+	},
+	"refmap": "better_climbing.refmap.json"
 }

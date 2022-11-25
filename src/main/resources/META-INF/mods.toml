@@ -1,0 +1,13 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="CC0-1.0"
+issueTrackerURL="https://github.com/artemisSystem/better-climbing/issues"
+
+[[mods]]
+modId="better_climbing"
+version="1.1.0"
+displayName="Better Climbing"
+displayURL="https://github.com/artemisSystem/better-climbing"
+logoFile="icon.png"
+authors="artemisSystem"
+description="Improves a lot of things relating to climbing, including making you climb faster"
