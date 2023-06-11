@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "artemis.better_climbing.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [],
+	"client": [],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"refmap": "better_climbing.refmap.json"
+}

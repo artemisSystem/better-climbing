@@ -1,0 +1,93 @@
+buildscript {
+	repositories {
+		repo it, "https://maven.minecraftforge.net"
+		repo it, "https://maven.parchmentmc.org",
+			"org.parchmentmc.librarian.forgegradle"
+	}
+}
+
+plugins {
+	id "net.minecraftforge.gradle" version "6.0.+"
+	id "org.parchmentmc.librarian.forgegradle" version "1.+"
+	id "org.spongepowered.mixin" version "0.7.+"
+}
+
+archivesBaseName = "${mod_id}-forge"
+if (System.getenv().RELEASE_MODE == null) {
+	version += '-SNAPSHOT'
+}
+
+dependencies {
+	compileOnly project(":Xplat")
+	minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+	annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+}
+
+mixin {
+	add sourceSets.main, "${mod_id}.refmap.json"
+	config "${mod_id}.xplat_mixins.json"
+}
+
+def run(r, String name) {
+	r.workingDirectory project.file("../run")
+	r.ideaModule "${rootProject.name}.${project.name}.main"
+	r.taskName name
+	r.property "mixin.env.remapRefMap", "true"
+	r.property "mixin.env.refMapRemappingFile",
+		"${projectDir}/build/createSrgToMcp/output.srg"
+}
+
+minecraft {
+	var parchment_components = parchment_version.split(":")
+	mappings channel: "parchment", version:
+		"${parchment_components[0]}-${parchment_components[1]}-${minecraft_version}"
+
+	runs {
+		client {
+			run it, "Client"
+			property "fml.earlyprogresswindow", "false"
+			mods {
+				modClientRun {
+					source sourceSets.main
+					source project(":Xplat").sourceSets.main
+				}
+			}
+		}
+
+		server {
+			run it, "Server"
+			mods {
+				modServerRun {
+					source sourceSets.main
+					source project(":Xplat").sourceSets.main
+				}
+			}
+		}
+	}
+}
+
+tasks.withType(JavaCompile) {
+	source(project(":Xplat").sourceSets.main.allSource)
+}
+
+processResources {
+	from project(":Xplat").sourceSets.main.resources
+}
+
+jar.finalizedBy("reobfJar")
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			groupId project.group
+			artifactId project.archivesBaseName
+			version project.version
+			artifact jar
+		}
+	}
+	repositories {
+		maven {
+			url "file://" + System.getenv("local_maven")
+		}
+	}
+}

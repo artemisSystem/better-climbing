@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[39,44)"
+license="CC0-1.0"
+[[mods]]
+	modId="better_climbing"
+	version="${file.jarVersion}"
+	displayName="Better Climbing"
+	logoFile="icon.png"
+	authors="artemis"
+	description="Improves a lot of things relating to climbing"
+[[dependencies.better_climbing]]
+	modId="forge"
+	mandatory=true
+	versionRange="[39,44)"
+	ordering="NONE"
+	side="BOTH"
+[[dependencies.better_climbing]]
+	modId="minecraft"
+	mandatory=true
+	versionRange="[1.18.1,1.19.3)"
+	ordering="NONE"
+	side="BOTH"

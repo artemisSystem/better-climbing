@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "better_climbing",
+	"version": "${version}",
+	"name": "Better Climbing",
+	"description": "Improves a lot of things relating to climbing",
+	"authors": [
+		"artemis"
+	],
+	"contact": {
+		"sources": "https://github.com/artemisSystem/better-climbing",
+		"issues": "https://github.com/artemisSystem/better-climbing/issues"
+	},
+	"license": "CC0-1.0",
+	"icon": "icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"artemis.better_climbing.FabricInitializer"
+		]
+	},
+	"mixins": [
+		"better_climbing.xplat_mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14",
+		"fabric": "*",
+		"minecraft": ">=1.18.1 <1.19.3",
+		"java": ">=17"
+	}
+}

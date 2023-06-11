@@ -1,0 +1,63 @@
+plugins {
+	id "fabric-loom" version "1.2.7"
+}
+
+archivesBaseName = "${mod_id}-fabric"
+if (System.getenv().RELEASE_MODE == null) {
+	version += '-SNAPSHOT'
+}
+
+repositories {
+	repo it, "https://maven.parchmentmc.org", "org.parchmentmc.data"
+}
+
+dependencies {
+	implementation project(":Xplat")
+	minecraft "com.mojang:minecraft:${minecraft_version}"
+	mappings loom.layered() {
+		officialMojangMappings()
+		parchment("org.parchmentmc.data:parchment-${parchment_version}@zip")
+	}
+	modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+}
+
+loom {
+	mixin.defaultRefmapName = "${mod_id}.refmap.json"
+	runs {
+		client { programArgs "--width=1300", "--height=850" }
+		configureEach {
+			ideConfigGenerated = true
+			runDir = "../run"
+		}
+	}
+}
+
+processResources {
+	from project(":Xplat").sourceSets.main.resources
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version
+	}
+}
+
+tasks.withType(JavaCompile) {
+	source(project(":Xplat").sourceSets.main.allSource)
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			groupId project.group
+			artifactId project.archivesBaseName
+			version project.version
+			from components.java
+		}
+	}
+	repositories {
+		maven {
+			url "file://" + System.getenv("local_maven")
+		}
+	}
+}
