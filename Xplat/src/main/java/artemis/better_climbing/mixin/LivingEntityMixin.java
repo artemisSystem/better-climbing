@@ -34,9 +34,9 @@ public abstract class LivingEntityMixin extends Entity {
 	)
 	private double better_climbing_modifyHorizontalMovementWhenClimbing(double speed, double vanillaSpeedMin, double vanillaSpeedMax) {
 		// no-op on server
-		if (!level.isClientSide) return Mth.clamp(speed, vanillaSpeedMin, vanillaSpeedMax);
+		if (!level().isClientSide()) return Mth.clamp(speed, vanillaSpeedMin, vanillaSpeedMax);
 
-		if (!this.onGround && this.isCrouching()) {
+		if (!this.onGround() && this.isCrouching()) {
 			return Mth.clamp(speed, vanillaSpeedMin, vanillaSpeedMax);
 		} else {
 			return speed;
@@ -49,7 +49,7 @@ public abstract class LivingEntityMixin extends Entity {
 	)
 	private double better_climbing_modifyVerticalMovementWhenClimbing(double currentYSpeed, double vanillaDownSpeed) {
 		// no-op on server
-		if (!level.isClientSide) return Math.max(currentYSpeed, vanillaDownSpeed);
+		if (!level().isClientSide()) return Math.max(currentYSpeed, vanillaDownSpeed);
 
 		// From looking 20 degrees down to 90 degrees down, scale downwards speed from vanilla speed (-0.15) to -0.4
 		double maxDownSpeed = Mth.clampedMap(getXRot(), 20, 90, vanillaDownSpeed, -0.4);
@@ -65,7 +65,7 @@ public abstract class LivingEntityMixin extends Entity {
 		at = @At("RETURN"), cancellable = true
 	)
 	private void better_climbing_incrementClimbTimer(CallbackInfoReturnable<Vec3> cir) {
-		if (!level.isClientSide) return;
+		if (!level().isClientSide()) return;
 
 		Vec3 movement = cir.getReturnValue();
 		if (onClimbable() && movement.y < 0 && getXRot() > 20) {
@@ -88,7 +88,7 @@ public abstract class LivingEntityMixin extends Entity {
 	)
 	private double better_climbing_allowJumpingInLadderAndSpeedUpClimbing(double vanillaClimbSpeed) {
 		// no-op on server
-		if (!level.isClientSide) return vanillaClimbSpeed;
+		if (!level().isClientSide()) return vanillaClimbSpeed;
 
 		climbingUpThisTick = true;
 		// Vanilla speed is 0.20
@@ -103,7 +103,7 @@ public abstract class LivingEntityMixin extends Entity {
 		at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/LivingEntity;horizontalCollision:Z", opcode = 180) // GETFIELD
 	)
 	private boolean better_climbing_cancelNonDeliberateCollission(LivingEntity livingEntity) {
-		if (level.isClientSide && (livingEntity instanceof LocalPlayer player)) {
+		if (level().isClientSide() && (livingEntity instanceof LocalPlayer player)) {
 			return livingEntity.horizontalCollision && player.input.getMoveVector().length() > 0;
 		}
 		// no-op
