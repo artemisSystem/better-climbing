@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[39,44)"
+loaderVersion="[39,46)"
 license="CC0-1.0"
 [[mods]]
 	modId="better_climbing"
@@ -11,12 +11,12 @@ license="CC0-1.0"
 [[dependencies.better_climbing]]
 	modId="forge"
 	mandatory=true
-	versionRange="[39,44)"
+	versionRange="[39,46)"
 	ordering="NONE"
 	side="BOTH"
 [[dependencies.better_climbing]]
 	modId="minecraft"
 	mandatory=true
-	versionRange="[1.18.1,1.19.3)"
+	versionRange="[1.18.1,1.20)"
 	ordering="NONE"
 	side="BOTH"
