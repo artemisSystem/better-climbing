@@ -4,7 +4,9 @@
 	"package": "artemis.better_climbing.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [],
-	"client": [],
+	"client": [
+		"LivingEntityMixin"
+	],
 	"injectors": {
 		"defaultRequire": 1
 	},
