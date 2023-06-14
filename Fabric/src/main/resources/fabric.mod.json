@@ -14,17 +14,12 @@
 	"license": "CC0-1.0",
 	"icon": "icon.png",
 	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"artemis.better_climbing.FabricInitializer"
-		]
-	},
+	"entrypoints": {},
 	"mixins": [
 		"better_climbing.xplat_mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.14",
-		"fabric": "*",
 		"minecraft": ">=1.18.1 <1.20",
 		"java": ">=17"
 	}
