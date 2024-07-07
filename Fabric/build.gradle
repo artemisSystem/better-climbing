@@ -3,11 +3,6 @@ plugins {
 	id "fabric-loom"
 }
 
-archivesBaseName = "${mod_id}-fabric"
-if (System.getenv().RELEASE_MODE == null) {
-	version += "-SNAPSHOT"
-}
-
 dependencies {
 	minecraft "com.mojang:minecraft:${minecraft_version}"
 	mappings loom.layered() {

@@ -4,11 +4,6 @@ plugins {
 	id "net.neoforged.moddev"
 }
 
-archivesBaseName = "${mod_id}-xplat"
-if (System.getenv().RELEASE_MODE == null) {
-	version += "-SNAPSHOT"
-}
-
 // minivan {
 // 	version(minecraft_version) // TODO: can omit ()?
 // }

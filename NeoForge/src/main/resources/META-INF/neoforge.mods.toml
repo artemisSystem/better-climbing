@@ -4,7 +4,7 @@ license="${license}"
 [[mods]]
 	modId="${mod_id}"
 	version="${mod_version}"
-	displayName="Better Climbing"
+	displayName="${mod_name}"
 	logoFile="icon.png"
 	authors="${mod_author}"
 	description="${mod_description}"

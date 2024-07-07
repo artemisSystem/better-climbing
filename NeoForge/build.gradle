@@ -3,11 +3,6 @@ plugins {
 	id "net.neoforged.moddev"
 }
 
-archivesBaseName = "${mod_id}-neoforge"
-if (System.getenv().RELEASE_MODE == null) {
-	version += "-SNAPSHOT"
-}
-
 neoForge {
 	version = neoforge_version
 
