@@ -1,39 +1,44 @@
 plugins {
-	id "org.spongepowered.gradle.vanilla" version "0.2.1-SNAPSHOT"
+	id "multiloader-xplat"
+	// id "agency.highlysuspect.minivan"
+	id "net.neoforged.moddev"
 }
 
 archivesBaseName = "${mod_id}-xplat"
 if (System.getenv().RELEASE_MODE == null) {
-	version += '-SNAPSHOT'
+	version += "-SNAPSHOT"
 }
 
-minecraft {
-	version(minecraft_version)
+// minivan {
+// 	version(minecraft_version) // TODO: can omit ()?
+// }
+
+neoForge {
+	neoFormVersion = "1.21-20240613.152323"
+
+	parchment {
+		var parchment_components = parchment_version.split(":")
+		mappingsVersion = parchment_components[1]
+		minecraftVersion = parchment_components[0]
+	}
 }
 
 dependencies {
 	compileOnly "org.spongepowered:mixin:0.8.5"
 }
 
-processResources {
-	def buildProps = project.properties.clone()
-	filesMatching(["pack.mcmeta"]) {
-		expand buildProps
+configurations {
+	xplatJava {
+		canBeResolved = false
+		canBeConsumed = true
+	}
+	xplatResources {
+		canBeResolved = false
+		canBeConsumed = true
 	}
 }
 
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			groupId project.group
-			artifactId project.archivesBaseName
-			version project.version
-			artifact jar
-		}
-	}
-	repositories {
-		maven {
-			url "file://" + System.getenv("local_maven")
-		}
-	}
+artifacts {
+	xplatJava sourceSets.main.java.sourceDirectories.singleFile
+	xplatResources sourceSets.main.resources.sourceDirectories.singleFile
 }

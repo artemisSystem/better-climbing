@@ -1,18 +1,14 @@
 plugins {
-	id "fabric-loom" version "1.2.7"
+	id "multiloader-loader"
+	id "fabric-loom"
 }
 
 archivesBaseName = "${mod_id}-fabric"
 if (System.getenv().RELEASE_MODE == null) {
-	version += '-SNAPSHOT'
-}
-
-repositories {
-	repo it, "https://maven.parchmentmc.org", "org.parchmentmc.data"
+	version += "-SNAPSHOT"
 }
 
 dependencies {
-	implementation project(":Xplat")
 	minecraft "com.mojang:minecraft:${minecraft_version}"
 	mappings loom.layered() {
 		officialMojangMappings()
@@ -28,35 +24,6 @@ loom {
 		configureEach {
 			ideConfigGenerated = true
 			runDir = "../run"
-		}
-	}
-}
-
-processResources {
-	from project(":Xplat").sourceSets.main.resources
-	inputs.property "version", project.version
-
-	filesMatching("fabric.mod.json") {
-		expand "version": project.version
-	}
-}
-
-tasks.withType(JavaCompile) {
-	source(project(":Xplat").sourceSets.main.allSource)
-}
-
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			groupId project.group
-			artifactId project.archivesBaseName
-			version project.version
-			from components.java
-		}
-	}
-	repositories {
-		maven {
-			url "file://" + System.getenv("local_maven")
 		}
 	}
 }

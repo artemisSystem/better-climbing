@@ -1,0 +1,40 @@
+plugins {
+	id "multiloader-xplat"
+}
+
+configurations {
+	xplatJava { canBeResolved = true }
+	xplatResources { canBeResolved = true }
+}
+
+dependencies {
+	compileOnly(project(":Xplat")) {
+		capabilities {
+			requireCapability "$group:$mod_id"
+		}
+	}
+	xplatJava project(path: ":Xplat", configuration: "xplatJava")
+	xplatResources project(path: ":Xplat", configuration: "xplatResources")
+}
+
+tasks.named("compileJava", JavaCompile) {
+	dependsOn(configurations.xplatJava)
+	source(configurations.xplatJava)
+}
+
+processResources {
+	dependsOn(configurations.xplatResources)
+	from(configurations.xplatResources)
+}
+
+tasks.named("javadoc", Javadoc).configure {
+	dependsOn(configurations.xplatJava)
+	source(configurations.xplatJava)
+}
+
+tasks.named("sourcesJar", Jar) {
+	dependsOn(configurations.xplatJava)
+	from(configurations.xplatJava)
+	dependsOn(configurations.xplatResources)
+	from(configurations.xplatResources)
+}
