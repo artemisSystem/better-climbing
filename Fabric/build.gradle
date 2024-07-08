@@ -15,10 +15,11 @@ dependencies {
 loom {
 	mixin.defaultRefmapName = "${mod_id}.refmap.json"
 	runs {
-		client { programArgs "--width=1300", "--height=850" }
-		configureEach {
-			ideConfigGenerated = true
+		client {
+			programArgs "--width=1300", "--height=850"
 			runDir = "../run"
 		}
+		server { runDir = "../runServer" }
+		configureEach { ideConfigGenerated = true }
 	}
 }
