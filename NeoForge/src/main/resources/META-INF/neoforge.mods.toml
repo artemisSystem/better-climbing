@@ -20,3 +20,5 @@ license="${license}"
 	versionRange="[1.21,)"
 	ordering="NONE"
 	side="BOTH"
+[[mixins]]
+	config="${mod_id}.xplat_mixins.json"
