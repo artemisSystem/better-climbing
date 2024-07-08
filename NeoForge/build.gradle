@@ -17,8 +17,12 @@ neoForge {
 			client()
 			programArgument "--width=1300"
 			programArgument "--height=850"
+			gameDirectory = project.file("../run")
 		}
-		server { server() }
+		server {
+			server()
+			gameDirectory = project.file("../runServer")
+		}
 		configureEach {
 			ideName = "NeoForge ${it.name.capitalize()} (${project.path})" // Unify the run config names with fabric
 		}
