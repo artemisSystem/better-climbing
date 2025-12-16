@@ -16,7 +16,9 @@ plugins {
 }
 
 def loader = project.name.toLowerCase()
-archivesBaseName = "${mod_id}-$loader"
+base {
+    archivesName = "${mod_id}-$loader"
+}
 version=mod_version
 if (System.getenv().RELEASE_MODE == null) {
 	version += "-SNAPSHOT"
@@ -98,7 +100,7 @@ tasks.withType(ProcessResources).configureEach {
 		"mixin_min_version"            : project.mixin_min_version
 	]
 
-	filesMatching(["pack.mcmeta", "fabric.mod.json", "META-INF/neoforge.mods.toml", "*mixins.json"]) {
+	filesMatching(["fabric.mod.json", "META-INF/neoforge.mods.toml", "*mixins.json"]) {
 		expand expandProps
 	}
 	inputs.properties(expandProps)
