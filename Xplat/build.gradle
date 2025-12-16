@@ -9,7 +9,7 @@ plugins {
 // }
 
 neoForge {
-	neoFormVersion = "1.21-20240613.152323"
+	neoFormVersion = "1.21.10-20251010.172816"
 
 	parchment {
 		var parchment_components = parchment_version.split(":")
@@ -19,7 +19,8 @@ neoForge {
 }
 
 dependencies {
-	compileOnly "org.spongepowered:mixin:0.8.5"
+	compileOnly "org.spongepowered:mixin:0.8.7"
+    compileOnly "io.github.llamalad7:mixinextras-common:0.3.6"
 }
 
 configurations {
