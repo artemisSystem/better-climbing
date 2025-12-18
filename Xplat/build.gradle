@@ -20,7 +20,7 @@ neoForge {
 
 dependencies {
 	compileOnly "org.spongepowered:mixin:0.8.7"
-    compileOnly "io.github.llamalad7:mixinextras-common:0.3.6"
+	compileOnly "io.github.llamalad7:mixinextras-common:0.3.6"
 }
 
 configurations {
