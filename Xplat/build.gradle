@@ -9,18 +9,13 @@ plugins {
 // }
 
 neoForge {
-	neoFormVersion = "1.21.10-20251010.172816"
-
-	parchment {
-		var parchment_components = parchment_version.split(":")
-		mappingsVersion = parchment_components[1]
-		minecraftVersion = parchment_components[0]
-	}
+	neoFormVersion = "26.1.2-1"
 }
 
 dependencies {
 	compileOnly "org.spongepowered:mixin:0.8.7"
-	compileOnly "io.github.llamalad7:mixinextras-common:0.3.6"
+	compileOnly "io.github.llamalad7:mixinextras-common:0.5.3"
+	compileOnly "org.ow2.asm:asm-commons:9.9.1"
 }
 
 configurations {

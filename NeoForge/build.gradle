@@ -6,12 +6,6 @@ plugins {
 neoForge {
 	version = neoforge_version
 
-	parchment {
-		var parchment_components = parchment_version.split(":")
-		mappingsVersion = parchment_components[1]
-		minecraftVersion = parchment_components[0]
-	}
-
 	runs {
 		client {
 			client()

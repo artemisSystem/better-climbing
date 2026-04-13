@@ -17,8 +17,8 @@
 		"better_climbing.xplat_mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.15",
-		"minecraft": ">=1.21.9",
-		"java": ">=21"
+		"fabricloader": ">=0.18.5",
+		"minecraft": ">=26.1",
+		"java": ">=25"
 	}
 }
