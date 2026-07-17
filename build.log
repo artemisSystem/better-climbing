@@ -1,0 +1,136 @@
+STDOUT:
+Starting a Gradle Daemon, 1 incompatible Daemon could not be reused, use --status for details
+> Task :buildSrc:extractPluginRequests
+> Task :buildSrc:generatePluginAdapters
+> Task :buildSrc:compileJava
+> Task :buildSrc:compileGroovy NO-SOURCE
+> Task :buildSrc:compileGroovyPlugins
+> Task :buildSrc:pluginDescriptors
+> Task :buildSrc:processResources
+> Task :buildSrc:classes
+> Task :buildSrc:jar
+
+> Configure project :Fabric
+Fabric Loom: 1.16.3
+The mixin annotation is no longer enabled by default, you should remove any loom.mixin configuration. If you wish to continue to use the mixin AP you can set useLegacyMixinAp = true.
+
+> Task :Xplat:createMinecraftArtifacts
+Loaded 118 artifacts from D:\GitHub-Projects\mc-mod-updates-26.2\better-climbing\Xplat\build\tmp\createMinecraftArtifacts\nfrt_artifact_manifest.properties
+[1m*** Started working on [4mdownloadManifest[0m[0m
+  DL    https://launchermeta.mojang.com/mc/game/version_manifest_v2.json
+ [1m[92mDONE [0m Completed [4mdownloadManifest[0m in 0.24s
+[1m*** Started working on [4mdownloadJson[0m[0m
+  DL    https://launchermeta.mojang.com/mc/game/version_manifest_v2.json
+  DL    https://piston-meta.mojang.com/v1/packages/8c3acc70f83af64ec307c2e87f1253ba2e66430b/26.1.json
+ [1m[92mDONE [0m Completed [4mdownloadJson[0m in 0.14s
+[1m*** Started working on [4mdownloadClient[0m[0m
+[1m*** Started working on [4mdownloadServer[0m[0m
+  DL    https://piston-data.mojang.com/v1/objects/191771837687b766537a8c4607cb6fad79c533a1/client.jar
+  DL    https://piston-data.mojang.com/v1/objects/3872a7f07a1a595e651aef8b058dfc2bb3772f46/server.jar
+ [1m[92mDONE [0m Completed [4mdownloadClient[0m in 2.57s
+ [1m[92mDONE [0m Completed [4mdownloadServer[0m in 2.92s
+[1m*** Started working on [4mpreProcessJar[0m[0m
+ RUN   Running external tool net.neoforged.installertools:installertools:4.0.16:fatjar
+ [1m[92mDONE [0m Completed [4mpreProcessJar[0m in 2.98s
+[1m*** Started working on [4mdecompile[0m[0m
+ RUN   Running external tool org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler
+ [1m[92mDONE [0m Completed [4mdecompile[0m in 37.99s
+[1m*** Started working on [4mpatch[0m[0m
+ RUN   Running external tool io.codechicken:DiffPatch:2.0.0.36:all
+ [1m[92mDONE [0m Completed [4mpatch[0m in 12.02s
+[1m*** Started working on [4mrecompile[0m[0m
+ 79 items on the compile classpath
+ 0 items on the sourcepath
+ Compiling 6882 source files
+Copied 18751 resource files
+ [1m[92mDONE [0m Completed [4mrecompile[0m in 34.90s
+[1m*** Started working on [4mmergeWithSources[0m[0m
+ [1m[92mDONE [0m Completed [4mmergeWithSources[0m in 2.84s
+Total runtime: 94.89s
+
+
+> Task :Xplat:compileJava
+> Task :Fabric:compileJava
+> Task :Fabric:processResources
+> Task :Fabric:classes
+> Task :Fabric:processIncludeJars
+> Task :Fabric:sourcesJar
+> Task :Fabric:compileTestJava NO-SOURCE
+> Task :Fabric:processTestResources NO-SOURCE
+> Task :Fabric:testClasses UP-TO-DATE
+> Task :Fabric:test NO-SOURCE
+> Task :Fabric:validateAccessWidener NO-SOURCE
+> Task :Fabric:check UP-TO-DATE
+
+> Task :NeoForge:createMinecraftArtifacts
+Loaded 141 artifacts from D:\GitHub-Projects\mc-mod-updates-26.2\better-climbing\NeoForge\build\tmp\createMinecraftArtifacts\nfrt_artifact_manifest.properties
+[1m*** Started working on [4mdownloadManifest[0m[0m
+  DL    https://launchermeta.mojang.com/mc/game/version_manifest_v2.json
+ [1m[92mDONE [0m Completed [4mdownloadManifest[0m in 0.26s
+[1m*** Started working on [4mdownloadJson[0m[0m
+ [1m[92mDONE [0m Completed [4mdownloadJson[0m in 0.00s
+[1m*** Started working on [4mdownloadClient[0m[0m
+[1m*** Started working on [4mdownloadServer[0m[0m
+ [1m[92mDONE [0m Completed [4mdownloadClient[0m in 0.03s
+ [1m[92mDONE [0m Completed [4mdownloadServer[0m in 0.03s
+[1m*** Started working on [4mpreProcessJar[0m[0m
+ [1m[92mREUSE[0m Used cache of [4mpreProcessJar[0m in 0.00s
+[1m*** Started working on [4mdecompile[0m[0m
+ [1m[92mREUSE[0m Used cache of [4mdecompile[0m in 0.00s
+[1m*** Started working on [4mpatch[0m[0m
+ [1m[92mREUSE[0m Used cache of [4mpatch[0m in 0.00s
+[1m*** Started working on [4mapplyNeoforgePatches[0m[0m
+ RUN   Running external tool io.codechicken:DiffPatch:2.0.0.36:all
+ [1m[92mDONE [0m Completed [4mapplyNeoforgePatches[0m in 8.03s
+[1m*** Started working on [4mtransformSources[0m[0m
+ RUN   Running external tool net.neoforged.jst:jst-cli-bundle:2.0.6
+ [1m[92mDONE [0m Completed [4mtransformSources[0m in 14.77s
+[1m*** Started working on [4mrecompile[0m[0m
+ 106 items on the compile classpath
+ 0 items on the sourcepath
+ Compiling 6882 source files
+
+> Task :Fabric:jar
+
+> Task :NeoForge:createMinecraftArtifacts
+Copied 18752 resource files
+ [1m[92mDONE [0m Completed [4mrecompile[0m in 36.75s
+[1m*** Started working on [4mmergeWithSources[0m[0m
+ [1m[92mDONE [0m Completed [4mmergeWithSources[0m in 2.63s
+Total runtime: 63.57s
+
+
+> Task :NeoForge:compileJava
+> Task :NeoForge:processResources
+> Task :NeoForge:classes
+> Task :NeoForge:jarJar NO-SOURCE
+> Task :NeoForge:jar
+> Task :NeoForge:sourcesJar
+> Task :NeoForge:assemble
+> Task :NeoForge:compileTestJava NO-SOURCE
+> Task :NeoForge:processTestResources NO-SOURCE
+> Task :NeoForge:testClasses UP-TO-DATE
+> Task :NeoForge:test NO-SOURCE
+> Task :NeoForge:check UP-TO-DATE
+> Task :NeoForge:build
+> Task :Xplat:processResources
+> Task :Xplat:classes
+> Task :Xplat:jarJar NO-SOURCE
+> Task :Xplat:jar
+> Task :Xplat:sourcesJar
+> Task :Xplat:assemble
+> Task :Xplat:compileTestJava NO-SOURCE
+> Task :Xplat:processTestResources NO-SOURCE
+> Task :Xplat:testClasses UP-TO-DATE
+> Task :Xplat:test NO-SOURCE
+> Task :Xplat:check UP-TO-DATE
+> Task :Xplat:build
+> Task :Fabric:assemble
+> Task :Fabric:build
+
+BUILD SUCCESSFUL in 4m 8s
+22 actionable tasks: 22 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.4.1/userguide/configuration_cache_enabling.html
+
+
+STDERR:
